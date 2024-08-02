@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center h-screen bg-gray-100">
+  <div class="flex flex-col gap-4 justify-center items-center h-screen bg-gray-100">
     <div class="bg-white p-6 rounded-lg shadow-md">
       <div class="mb-4">
         <input
@@ -20,6 +20,8 @@
         </button>
       </div>
     </div>
+
+    <p>Made by PixelCamera</p>
   </div>
 </template>
 
