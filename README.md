@@ -1,4 +1,6 @@
-# calculator
+# Vue 3 Calculator
+
+A simple calculator built with Vue 3 and Tailwind CSS.
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -27,3 +29,9 @@ npm run dev
 ```sh
 npm run build
 ```
+
+## Features
+
+- Basic arithmetic operations
+- Clear function
+- Responsive design with Tailwind CSS
