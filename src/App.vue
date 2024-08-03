@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col justify-center items-center h-screen gap-4">
-    <responsive-glow-background />
-    <p>{{ calcState }}</p>
+    <responsive-glow-background/>
+    <p v-if="showInfo"> {{ calcState }} </p>
     <div class="bg-white p-6 rounded-lg shadow-md z-10 bg-opacity-50">
       <div class="mb-4">
         <div class="w-full text-right text-lg p-2 bg-gray-900 rounded bg-opacity-10 mb-2 h-8 overflow-hidden">
@@ -20,16 +20,28 @@
         >
           {{ btn }}
         </button>
+        <button
+            @click="switchInfo()"
+            class="bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-bold py-2 px-4 rounded bg-opacity-90"
+        > INFO
+        </button>
       </div>
     </div>
-    <p>Made by PixelCamera</p>
+    <div>Made by <a href="https://github.com/PixelCamera/calculator" target="_blank" class="hover:text-red-500">PixelCamera</a>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { reactive, computed } from 'vue'
+import {ref, reactive, computed} from 'vue'
 import ResponsiveGlowBackground from "@/components/ResponsiveGlowBackground.vue";
 import Decimal from 'decimal.js'; // 引入 Decimal.js 用于精确计算
+
+const showInfo = ref(false);
+
+function switchInfo() {
+  showInfo.value = !showInfo.value;
+}
 
 // 计算器状态枚举
 const STATE_TYPE = {
@@ -129,7 +141,8 @@ function handleInput(input) {
         calcState.op = input
         calcState.current = STATE_TYPE.OP
         if (calcState.first.endsWith('.')) {
-          calcState.first = calcState.first.slice(0, -1);}
+          calcState.first = calcState.first.slice(0, -1);
+        }
       } else if (input !== '=') {
         calcState.first = appendToOperand(calcState.first, input)
       }
