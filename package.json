@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "decimal.js": "^10.4.3",
     "vue": "^3.4.29"
   },
   "devDependencies": {
