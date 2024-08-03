@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col justify-center items-center h-screen gap-4">
-    <BackgroundEffect />
+    <responsive-glow-background />
     <div class="bg-white p-6 rounded-lg shadow-md z-10 bg-opacity-50">
       <div class="mb-4">
         <input
@@ -28,7 +28,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import BackgroundEffect from "@/components/BackgroundEffect.vue";
+import ResponsiveGlowBackground from "@/components/ResponsiveGlowBackground.vue";
 
 const display = ref('0')
 const buttons = ['7', '8', '9', '/', '4', '5', '6', '*', '1', '2', '3', '-', 'C', '0', '=', '+']
