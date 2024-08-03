@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col justify-center items-center h-screen gap-4">
     <responsive-glow-background />
+    <p>{{ calcState }}</p>
     <div class="bg-white p-6 rounded-lg shadow-md z-10 bg-opacity-50">
       <div class="mb-4">
         <div class="w-full text-right text-lg p-2 bg-gray-900 rounded bg-opacity-10 mb-2 h-8 overflow-hidden">
@@ -127,6 +128,8 @@ function handleInput(input) {
       } else if (operators.includes(input)) {
         calcState.op = input
         calcState.current = STATE_TYPE.OP
+        if (calcState.first.endsWith('.')) {
+          calcState.first = calcState.first.slice(0, -1);}
       } else if (input !== '=') {
         calcState.first = appendToOperand(calcState.first, input)
       }
