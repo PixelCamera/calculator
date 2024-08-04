@@ -4,6 +4,8 @@ import ResponsiveGlowBackground from "@/components/ResponsiveGlowBackground.vue"
 import Decimal from 'decimal.js'; // 引入 Decimal.js 用于精确计算
 
 const showInfo = ref(false);
+import {useDarkMode} from '@/components/useDarkMode.vue'; // 导入新的useDarkMode组合式函数
+const {isDarkMode, toggleDarkMode} = useDarkMode();
 
 function switchInfo() {
   showInfo.value = !showInfo.value;
@@ -169,15 +171,19 @@ function handleInput(input) {
 </script>
 
 <template>
-  <div class="flex flex-col justify-center items-center h-screen gap-4">
+  <div
+      :class="['flex flex-col justify-center items-center min-h-screen gap-4 transition-colors duration-300', isDarkMode ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-800']">
     <responsive-glow-background/>
-    <p v-if="showInfo"> {{ calcState }} </p>
-    <div class="bg-white p-6 rounded-lg shadow-md z-10 bg-opacity-50">
+    <p v-if="showInfo" :class="[isDarkMode ? 'text-gray-100' : 'text-gray-800']"> {{ calcState }} </p>
+    <div
+        :class="['p-6 rounded-lg shadow-md z-10 transition-colors duration-300', isDarkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-gray-50 bg-opacity-50']">
       <div class="mb-4">
-        <div class="w-full text-right text-lg p-2 bg-gray-900 rounded bg-opacity-10 mb-2 h-8 overflow-hidden">
+        <div
+            :class="['w-full text-right text-lg p-2 rounded mb-2 h-8 overflow-hidden', isDarkMode ? 'bg-gray-700 ' : 'bg-gray-200 ']">
           {{ expressionDisplay }}
         </div>
-        <div class="w-full text-right text-2xl p-2 bg-gray-900 rounded bg-opacity-10">
+        <div
+            :class="['w-full text-right text-2xl p-2 rounded', isDarkMode ? 'bg-gray-700 ' : 'bg-gray-200 ']">
           {{ valueDisplay }}
         </div>
       </div>
@@ -186,22 +192,34 @@ function handleInput(input) {
             v-for="btn in buttons"
             :key="btn"
             @click="handleInput(btn)"
-            class="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 focus:bg-blue-600 text-white font-bold py-2 px-4 rounded bg-opacity-90"
+            :class="['font-bold py-2 px-4 rounded bg-opacity-90 transition-colors duration-300', isDarkMode ? 'bg-blue-700 hover:bg-blue-800 active:bg-blue-900 text-gray-200' : 'bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white']"
         >
           {{ btn }}
         </button>
         <button
             @click="switchInfo()"
-            class="bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-bold py-2 px-4 rounded bg-opacity-90"
-        > INFO
+            :class="['font-bold py-2 px-4 rounded bg-opacity-90 transition-colors duration-300', isDarkMode ? 'bg-red-700 hover:bg-red-800 active:bg-red-900 text-gray-200' : 'bg-red-500 hover:bg-red-600 active:bg-red-700 text-white']"
+        >
+          INFO
         </button>
       </div>
     </div>
-    <div>Made by
-      <a href="https://github.com/PixelCamera/calculator" target="_blank" class="group hover:text-red-500 ">
-        <font-awesome-icon :icon="['fab','github']" class="text-gray-500 text-xl group-hover:text-red-500" />
+    <div class="flex items-center gap-4 mt-4">
+      <span>Made by</span>
+      <a href="https://github.com/PixelCamera/calculator" target="_blank"
+         class="group hover:text-red-500 flex items-center">
+        <font-awesome-icon :icon="['fab','github']"
+                           :class="['text-xl group-hover:text-red-600',
+                           isDarkMode ? 'text-gray-300' : 'text-gray-700']"/>
         <span class="ml-1">PixelCamera</span>
       </a>
+      <button
+          @click="toggleDarkMode"
+          :class="['w-10 h-10 rounded-full transition-colors duration-300',
+          isDarkMode ? 'bg-yellow-400 text-gray-900' : 'bg-gray-700 text-yellow-400']"
+      >
+        <font-awesome-icon :icon="isDarkMode ? 'sun' : 'moon'" class="text-lg"/>
+      </button>
     </div>
   </div>
 </template>
