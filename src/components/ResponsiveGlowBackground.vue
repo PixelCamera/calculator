@@ -1,21 +1,9 @@
-<template>
-  <div
-      ref="containerRef"
-      class="fixed inset-0 pointer-events-none"
-  >
-    <div
-        class="absolute bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full opacity-20 blur-3xl will-change-transform"
-        :style="glowStyle"
-    ></div>
-  </div>
-</template>
-
 <script setup>
-import {ref, reactive, computed, onMounted, onUnmounted} from 'vue';
+import { ref, reactive, computed, onMounted, onUnmounted } from 'vue';
 
 const containerRef = ref(null);
-const position = reactive({x: 0, y: 0});
-const targetPosition = reactive({x: 0, y: 0});
+const position = reactive({ x: 0, y: 0 });
+const targetPosition = reactive({ x: 0, y: 0 });
 const isActive = ref(false);
 
 const glowSize = computed(() => 400);
@@ -36,12 +24,12 @@ const updateTargetPosition = (clientX, clientY) => {
   targetPosition.y = clientY;
 };
 
-const handlePointerOver = (e) => {
+const handlePointerOver = e => {
   isActive.value = true;
   updateTargetPosition(e.clientX, e.clientY);
 };
 
-const handlePointerMove = (e) => {
+const handlePointerMove = e => {
   updateTargetPosition(e.clientX, e.clientY);
 };
 
@@ -71,3 +59,12 @@ onUnmounted(() => {
   document.removeEventListener('pointerleave', handlePointerLeave);
 });
 </script>
+
+<template>
+  <div ref="containerRef" class="pointer-events-none fixed inset-0">
+    <div
+      class="absolute rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-20 blur-3xl will-change-transform"
+      :style="glowStyle"
+    ></div>
+  </div>
+</template>
