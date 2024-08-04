@@ -7,27 +7,18 @@ const { isDarkMode, toggleDarkMode } = useDarkMode();
 </script>
 
 <template>
-  <div
-    class="flex min-h-screen flex-col items-center justify-center gap-4 bg-white text-gray-800 transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100"
-  >
+  <div class="global-text global-animate global-flex global-bg min-h-screen select-none flex-col gap-10">
     <responsive-glow-background />
-    <calculator />
-    <div class="mt-4 flex items-center gap-4">
+    <calculator class="global-text z-10" />
+    <div class="global-flex z-10 gap-3">
       <span>Made by</span>
-      <a
-        href="https://github.com/PixelCamera/calculator"
-        target="_blank"
-        class="group flex items-center hover:text-red-500"
-      >
-        <font-awesome-icon
-          :icon="['fab', 'github']"
-          class="text-xl text-gray-700 group-hover:text-red-600 dark:text-gray-300"
-        />
-        <span class="ml-1">PixelCamera</span>
+      <a href="https://github.com/PixelCamera/calculator" target="_blank" class="global-flex gap-1 hover:text-red-600">
+        <font-awesome-icon :icon="['fab', 'github']" class="text-2xl" />
+        <span>PixelCamera</span>
       </a>
       <button
         @click="toggleDarkMode"
-        class="h-10 w-10 rounded-full bg-gray-700 text-yellow-400 transition-colors duration-300 dark:bg-yellow-400 dark:text-gray-900"
+        class="global-animate global-flex h-10 w-10 rounded-full bg-slate-700 text-yellow-400 dark:bg-yellow-400 dark:text-slate-700"
       >
         <font-awesome-icon :icon="isDarkMode ? 'sun' : 'moon'" class="text-lg" />
       </button>

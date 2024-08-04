@@ -4,14 +4,62 @@
 
 @layer components {
     .btn-base {
-        @apply font-bold py-2 px-4 rounded bg-opacity-90 transition-colors duration-300;
+        @apply rounded-lg global-animate px-2 py-2
+        text-white
+        hover:-translate-y-0.5
+        drop-shadow-lg shadow-lg
+        hover:ring ring-white/40
     }
 
     .btn-blue {
-        @apply btn-base bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white dark:bg-blue-700 dark:hover:bg-blue-800 dark:active:bg-blue-900 dark:text-gray-200;
+        @apply btn-base
+        bg-gradient-to-br from-blue-500/90 to-blue-700/90
+        hover:bg-blue-50 active:bg-blue-950
+        border border-blue-100 dark:border-blue-500
     }
 
     .btn-red {
-        @apply btn-base bg-red-500 hover:bg-red-600 active:bg-red-700 text-white dark:bg-red-700 dark:hover:bg-red-800 dark:active:bg-red-900 dark:text-gray-200;
+        @apply btn-base
+        bg-gradient-to-br from-red-500/90 to-red-700/90
+        hover:bg-red-50 active:bg-red-950
+        border border-red-100 dark:border-red-500
+    }
+
+    .global-bg {
+        @apply bg-slate-100 dark:bg-slate-900;
+    }
+
+    .global-text {
+        @apply text-slate-900 dark:text-slate-100;
+    }
+
+    .global-animate {
+        @apply transition-all duration-300 ease-out;
+    }
+
+    .global-flex {
+        @apply flex items-center justify-center;
+    }
+
+    .calc-container {
+        @apply global-animate rounded-2xl backdrop-blur-3xl
+        border-2 border-slate-300/50 dark:border-slate-50/10 /*border*/
+        bg-black/5 dark:bg-white/5 /*background*/
+        shadow-lg hover:shadow-2xl /*shadow*/
+        hover:ring-2 hover:ring-white/50 ring-offset-1 ring-offset-white/25
+            /*ring*/
+        hover:-translate-y-4
+        /*transform*/
+    }
+
+    .calc-display {
+        @apply global-animate w-full rounded-lg text-right py-2 px-4
+        font-mono
+        bg-black/10 dark:bg-white/10
+        /*background*/
+    }
+
+    .calc-btn {
+
     }
 }

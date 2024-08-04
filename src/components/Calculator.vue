@@ -4,11 +4,23 @@ import { handleInput, expressionDisplay, valueDisplay, calcState } from '@/compo
 
 // prettier-ignore
 const BUTTONS = [
-  "7", "8", "9", "÷",
-  "4", "5", "6", "×",
-  "1", "2", "3", "-",
-  "C", "0", ".", "+",
-  "=",
+  {value: 'C', classes: []},
+  {value: '÷', classes: []},
+  {value: '×', classes: []},
+  {value: '-', classes: []},
+  {value: '7', classes: []},
+  {value: '8', classes: []},
+  {value: '9', classes: []},
+  {value: '+', classes: ['row-span-2']},
+  {value: '4', classes: []},
+  {value: '5', classes: []},
+  {value: '6', classes: []},
+  {value: '1', classes: []},
+  {value: '2', classes: []},
+  {value: '3', classes: []},
+  {value: '=', classes: ['row-span-2']},
+  {value: '0', classes: ['col-span-2']},
+  {value: '.', classes: []},
 ];
 
 const showInfo = ref(false);
@@ -19,25 +31,28 @@ function switchInfo() {
 </script>
 
 <template>
-  <p v-if="showInfo" class="text-gray-800 dark:text-gray-100">
-    {{ calcState }}
-  </p>
-  <div
-    class="z-10 rounded-lg bg-gray-50 bg-opacity-50 p-6 shadow-md transition-colors duration-300 dark:bg-gray-800 dark:bg-opacity-50"
-  >
-    <div class="mb-4">
-      <div class="mb-2 h-8 w-full overflow-hidden rounded bg-gray-200 p-2 text-right text-lg dark:bg-gray-700">
-        {{ expressionDisplay }}
-      </div>
-      <div class="w-full rounded bg-gray-200 p-2 text-right text-2xl dark:bg-gray-700">
-        {{ valueDisplay }}
-      </div>
+  <!--info-->
+  <p v-if="showInfo" class="w-full px-8 py-2 text-center">{{ calcState }}</p>
+
+  <!--calculator-->
+  <div class="calc-container global-flex flex-col gap-8 p-8">
+    <!--display-->
+    <div class="global-flex w-full flex-col gap-4">
+      <div class="calc-display h-10 text-2xl">{{ expressionDisplay }}</div>
+      <div class="calc-display text-3xl">{{ valueDisplay }}</div>
     </div>
-    <div class="grid grid-cols-4 gap-2">
-      <button v-for="btn in BUTTONS" :key="btn" @click="handleInput(btn)" class="btn-blue">
-        {{ btn }}
+
+    <!--buttons-->
+    <div class="grid grid-cols-4 gap-3 font-mono">
+      <button
+        v-for="btn in BUTTONS"
+        :key="btn.value"
+        @click="handleInput(btn.value)"
+        :class="['btn-blue', 'text-4xl', ...btn.classes]"
+      >
+        {{ btn.value }}
       </button>
-      <button @click="switchInfo()" class="btn-red">INFO</button>
+      <button @click="switchInfo()" class="btn-red text-2xl">INFO</button>
     </div>
   </div>
 </template>
