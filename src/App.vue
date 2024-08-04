@@ -1,37 +1,3 @@
-<template>
-  <div class="flex flex-col justify-center items-center h-screen gap-4">
-    <responsive-glow-background/>
-    <p v-if="showInfo"> {{ calcState }} </p>
-    <div class="bg-white p-6 rounded-lg shadow-md z-10 bg-opacity-50">
-      <div class="mb-4">
-        <div class="w-full text-right text-lg p-2 bg-gray-900 rounded bg-opacity-10 mb-2 h-8 overflow-hidden">
-          {{ expressionDisplay }}
-        </div>
-        <div class="w-full text-right text-2xl p-2 bg-gray-900 rounded bg-opacity-10">
-          {{ valueDisplay }}
-        </div>
-      </div>
-      <div class="grid grid-cols-4 gap-2">
-        <button
-            v-for="btn in buttons"
-            :key="btn"
-            @click="handleInput(btn)"
-            class="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 focus:bg-blue-600 text-white font-bold py-2 px-4 rounded bg-opacity-90"
-        >
-          {{ btn }}
-        </button>
-        <button
-            @click="switchInfo()"
-            class="bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-bold py-2 px-4 rounded bg-opacity-90"
-        > INFO
-        </button>
-      </div>
-    </div>
-    <div>Made by <a href="https://github.com/PixelCamera/calculator" target="_blank" class="hover:text-red-500">PixelCamera</a>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import {ref, reactive, computed} from 'vue'
 import ResponsiveGlowBackground from "@/components/ResponsiveGlowBackground.vue";
@@ -62,8 +28,8 @@ const calcState = reactive({
 })
 
 // 定义计算器按钮
-const buttons = ['7', '8', '9', '/', '4', '5', '6', '*', '1', '2', '3', '-', 'C', '0', '.', '+', '=']
-const operators = ['+', '-', '*', '/']
+const buttons = ['7', '8', '9', '÷', '4', '5', '6', '×', '1', '2', '3', '-', 'C', '0', '.', '+', '=']
+const operators = ['+', '-', '×', '÷']
 
 // 辅助函数：检查当前状态
 const isState = (...states) => states.includes(calcState.current)
@@ -115,8 +81,8 @@ function calculate() {
   const operations = {
     '+': a.plus(b),
     '-': a.minus(b),
-    '*': a.times(b),
-    '/': b.isZero() ? 'Error' : a.dividedBy(b)
+    '×': a.times(b),
+    '÷': b.isZero() ? 'Error' : a.dividedBy(b)
   }
   return operations[calcState.op]?.toString() ?? 'Error'
 }
@@ -201,3 +167,41 @@ function handleInput(input) {
   actions[calcState.current]()
 }
 </script>
+
+<template>
+  <div class="flex flex-col justify-center items-center h-screen gap-4">
+    <responsive-glow-background/>
+    <p v-if="showInfo"> {{ calcState }} </p>
+    <div class="bg-white p-6 rounded-lg shadow-md z-10 bg-opacity-50">
+      <div class="mb-4">
+        <div class="w-full text-right text-lg p-2 bg-gray-900 rounded bg-opacity-10 mb-2 h-8 overflow-hidden">
+          {{ expressionDisplay }}
+        </div>
+        <div class="w-full text-right text-2xl p-2 bg-gray-900 rounded bg-opacity-10">
+          {{ valueDisplay }}
+        </div>
+      </div>
+      <div class="grid grid-cols-4 gap-2">
+        <button
+            v-for="btn in buttons"
+            :key="btn"
+            @click="handleInput(btn)"
+            class="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 focus:bg-blue-600 text-white font-bold py-2 px-4 rounded bg-opacity-90"
+        >
+          {{ btn }}
+        </button>
+        <button
+            @click="switchInfo()"
+            class="bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-bold py-2 px-4 rounded bg-opacity-90"
+        > INFO
+        </button>
+      </div>
+    </div>
+    <div>Made by
+      <a href="https://github.com/PixelCamera/calculator" target="_blank" class="group hover:text-red-500 ">
+        <font-awesome-icon :icon="['fab','github']" class="text-gray-500 text-xl group-hover:text-red-500" />
+        <span class="ml-1">PixelCamera</span>
+      </a>
+    </div>
+  </div>
+</template>
