@@ -4,11 +4,9 @@
 
 @layer components {
     .btn-base {
-        @apply rounded-lg global-animate px-2 py-2
+        @apply rounded-lg global-animate p-1
         text-white
-        hover:-translate-y-0.5 active:translate-y-0.5
-        drop-shadow-lg shadow-lg
-        hover:ring ring-white/40
+        hover:ring hover:ring-white/40 active:ring-white/80
     }
 
     .btn-blue {
@@ -33,7 +31,7 @@
     }
 
     .global-animate {
-        @apply transition-all duration-300 ease-out;
+        @apply transition-all duration-100 ease-out;
     }
 
     .global-flex {
@@ -44,21 +42,12 @@
         @apply global-animate rounded-2xl backdrop-blur-3xl
         border-2 border-slate-300/50 dark:border-slate-50/10 /*border*/
         bg-black/5 dark:bg-white/5 /*background*/
-        shadow-lg hover:shadow-2xl /*shadow*/
-        hover:ring-2 hover:ring-white/50 ring-offset-1 ring-offset-white/25
-            /*ring*/
-        hover:-translate-y-4
-        /*transform*/
+        hover:ring-2 hover:ring-white/50  /*ring*/
     }
 
     .calc-display {
         @apply global-animate w-full rounded-lg text-right py-2 px-4
-        font-mono
-        bg-black/10 dark:bg-white/10
-        /*background*/
+        bg-black/10 dark:bg-white/10  /*background*/
     }
 
-    .calc-btn {
-
-    }
 }
