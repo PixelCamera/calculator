@@ -4,22 +4,33 @@
 
 @layer components {
     .btn-base {
-        @apply rounded-lg global-animate p-1
-        text-white
-        hover:ring hover:ring-white/40 active:ring-white/80
+        @apply  px-8 py-3 text-lg rounded
+        global-border /*border*/
+        shadow-sm backdrop-blur
     }
 
-    .btn-blue {
+    .btn-default {
         @apply btn-base
-        bg-gradient-to-br from-blue-500/70 to-blue-600/80
-        hover:bg-blue-100 active:bg-red-900
-        dark:hover:bg-blue-900 dark:active:bg-blue-100
+        bg-gray-100 hover:bg-gray-200/85 active:bg-transparent
+        dark:bg-gray-50/5 dark:hover:bg-black/20 dark:active:bg-black/25
     }
 
-    .btn-red {
+    .btn-primary {
         @apply btn-base
-        bg-gradient-to-br from-red-500/70 to-red-600/80
-        hover:bg-red-100 active:bg-red-900
+        bg-blue-950 hover:bg-blue-950/85 active:bg-blue-950/70
+        dark:bg-blue-950 dark:hover:bg-blue-950/85 dark:active:bg-blue-950/70
+    }
+
+    .btn-secondary {
+        @apply btn-base
+        bg-transparent hover:bg-gray-200/90 active:bg-transparent
+        dark:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/25
+    }
+
+    .btn-function {
+        @apply global-animate global-flex
+        w-full py-2 text-sm rounded
+        hover:bg-black/5 active:bg-black/10
     }
 
     .global-bg {
@@ -27,27 +38,36 @@
     }
 
     .global-text {
-        @apply text-slate-900 dark:text-slate-100;
+        @apply text-gray-900 dark:text-gray-100;
     }
 
     .global-animate {
-        @apply transition-all duration-100 ease-out;
+        @apply transition-all duration-100 ease-in;
     }
 
     .global-flex {
         @apply flex items-center justify-center;
     }
 
+    .global-border {
+        @apply border border-gray-300 dark:border-gray-700;
+
+    }
+
+    /*calculator container*/
     .calc-container {
-        @apply global-animate rounded-2xl backdrop-blur-3xl
-        border-2 border-slate-300/50 dark:border-slate-50/10 /*border*/
-        bg-black/5 dark:bg-white/5 /*background*/
-        hover:ring-2 hover:ring-white/50  /*ring*/
+        @apply global-animate
+        rounded-lg
+        backdrop-blur
+        global-border /*border*/
+        bg-gray-100/50 dark:bg-white/5 /*background*/
+        shadow-2xl drop-shadow-2xl /*shadow*/
     }
 
-    .calc-display {
-        @apply global-animate w-full rounded-lg text-right py-2 px-4
-        bg-black/10 dark:bg-white/10  /*background*/
+    /*calculator screen*/
+    .display-bg{
+        @apply
+        global-border /*border*/
+        bg-black/5 /*background*/
     }
-
 }
