@@ -6,14 +6,15 @@
     .btn-base {
         @apply  px-8 py-3 text-lg rounded
         global-border /*border*/
-        shadow-sm backdrop-blur
+        shadow-sm
     }
 
     .btn-default {
         @apply btn-base
-        bg-gray-100 hover:bg-gray-200/85 active:bg-transparent
-        dark:bg-gray-50/5 dark:hover:bg-black/20 dark:active:bg-black/25
+        bg-slate-100 hover:bg-slate-100/80 active:hover:bg-slate-100/60
+        dark:bg-slate-900/80 dark:hover:bg-slate-900/65 dark:active:hover:bg-slate-900/50;
     }
+
 
     .btn-primary {
         @apply btn-base
@@ -23,8 +24,8 @@
 
     .btn-secondary {
         @apply btn-base
-        bg-transparent hover:bg-gray-200/90 active:bg-transparent
-        dark:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/25
+        bg-white/5 hover:bg-white/20 active:bg-white/40
+        dark:bg-black/20 dark:hover:bg-black/30 dark:active:bg-black/40
     }
 
     .btn-function {
@@ -34,7 +35,7 @@
     }
 
     .global-bg {
-        @apply bg-slate-100 dark:bg-slate-900;
+        @apply bg-slate-100 dark:bg-slate-950;
     }
 
     .global-text {
@@ -58,7 +59,7 @@
     .calc-container {
         @apply global-animate
         rounded-lg
-        backdrop-blur
+        backdrop-blur-3xl
         global-border /*border*/
         bg-gray-100/50 dark:bg-white/5 /*background*/
         shadow-2xl drop-shadow-2xl /*shadow*/
