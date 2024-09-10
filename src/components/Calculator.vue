@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { handleInput, expressionDisplay, valueDisplay, calcState } from '@/composables/useCalculator.js';
 import { useDarkMode } from '@/composables/useDarkMode.js';
 
@@ -30,6 +30,32 @@ const showInfo = ref(false);
 function switchInfo() {
   showInfo.value = !showInfo.value;
 }
+
+function handleKeyDown(event) {
+  const key = event.key;
+  const validKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '+', '-', '*', '/', 'Enter', 'Backspace', 'Escape'];
+  
+  if (validKeys.includes(key)) {
+    event.preventDefault();
+    let input = key;
+    
+    if (key === 'Enter') input = '=';
+    else if (key === '*') input = '×';
+    else if (key === '/') input = '÷';
+    else if (key === 'Backspace') input = 'C';
+    else if (key === 'Escape') input = 'C';
+    
+    handleInput(input);
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeyDown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeyDown);
+});
 </script>
 
 <template>
