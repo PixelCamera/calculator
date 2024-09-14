@@ -1,11 +1,12 @@
+/* main.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
     .btn-base {
-        @apply  px-8 py-3 text-lg rounded
-        global-border /*border*/
+        @apply px-8 py-3 text-lg rounded
+        global-border
         shadow-sm
     }
 
@@ -14,7 +15,6 @@
         bg-slate-100 hover:bg-slate-100/80 active:hover:bg-slate-100/60
         dark:bg-slate-900/80 dark:hover:bg-slate-900/65 dark:active:hover:bg-slate-900/50;
     }
-
 
     .btn-primary {
         @apply btn-base
@@ -30,7 +30,7 @@
 
     .btn-function {
         @apply global-animate global-flex
-        w-full py-2 text-sm rounded
+        py-2 text-sm rounded w-12
         hover:bg-black/5 active:bg-black/10
     }
 
@@ -52,23 +52,42 @@
 
     .global-border {
         @apply border border-gray-300 dark:border-gray-700;
-
     }
 
-    /*calculator container*/
+    /* calculator container */
     .calc-container {
         @apply global-animate
         rounded-lg
         backdrop-blur-3xl
-        global-border /*border*/
-        bg-gray-100/50 dark:bg-white/5 /*background*/
-        shadow-2xl drop-shadow-2xl /*shadow*/
+        global-border
+        bg-gray-100/50 dark:bg-white/5
+        shadow-2xl drop-shadow-2xl
+        relative
     }
 
-    /*calculator screen*/
-    .display-bg{
+    /* calculator screen */
+    .display-bg {
         @apply
-        global-border /*border*/
-        bg-black/5 /*background*/
+        global-border
+        bg-black/5
+    }
+
+    /* Info 信息卡片动画 */
+    @keyframes fade-in {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    .animate-fade-in {
+        animation: fade-in 0.3s ease-out forwards;
+    }
+
+    /* 增强按钮的炫酷效果 */
+    .btn-function:hover {
+        @apply transform scale-105 transition-transform duration-200;
+    }
+
+    .btn-function:active {
+        @apply transform scale-95 transition-transform duration-100;
     }
 }
