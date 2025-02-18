@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
-    "@vue/language-server": "^2.2.0",
+    "@vue/language-server": "^2.2.2",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5.1",
     "prettier": "^3.5.1",
