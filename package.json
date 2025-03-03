@@ -20,7 +20,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.8",
     "@vitejs/plugin-vue": "^5.2.1",
-    "@vue/language-server": "^2.2.4",
+    "@vue/language-server": "^2.2.8",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5.3",
     "prettier": "^3.5.2",
